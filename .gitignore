@@ -6,3 +6,6 @@ archive/
 
 # log files
 *.log
+
+# Build
+main
