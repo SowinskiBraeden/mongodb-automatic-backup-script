@@ -59,7 +59,7 @@ func main() {
 	path, _ := os.Getwd()
 
 	// Load environment variables
-	godotenv.Load(fmt.Sprintf("%s/.env", path))
+	godotenv.Load(filepath.Join(path, ".env"))
 	var mongoURI 				string = os.Getenv("mongoURI")
 	var database_string string = os.Getenv("databases")
 	var github 					string = os.Getenv("github")
