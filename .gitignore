@@ -2,7 +2,7 @@
 .env
 
 # Archive from mongodump
-archive/*
+archive/
 
 # log files
 *.log
