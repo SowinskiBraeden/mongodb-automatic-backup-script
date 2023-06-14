@@ -1,0 +1,8 @@
+# Environment variables
+.env
+
+# Archive from mongodump
+archive/*
+
+# log files
+*.log
