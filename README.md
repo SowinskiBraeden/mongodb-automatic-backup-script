@@ -17,7 +17,7 @@ A script to automatically handle the backing up of MongoDB databases and optiona
 3. Setup your service on your UNIX-based OS, for example an Ubuntu Server.   
     **i.** Build the project to a binary.
     ```bash
-    $ go build
+    $ go build main.go
     ```
     **ii.** Create a System Service file
     ```bash

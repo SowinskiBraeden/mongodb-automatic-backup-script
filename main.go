@@ -25,7 +25,7 @@ func LogToFile(message string) {
 	f, err := os.OpenFile("databaseBackup.log", os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
 	Handle(err)
 	defer f.Close()
-	
+
 	log.SetOutput(f)
 	log.Println(fmt.Sprintf(" | %s", message))
 }
@@ -55,8 +55,11 @@ func UploadToGithub(archiveDir string) {
 }
 
 func main() {
+	path, err := os.Getwd()
+	Handle(err)
+	
 	// Load environment variables
-	godotenv.Load(".env")
+	godotenv.Load(fmt.Sprintf("%s/.env", path))
 	var mongoURI 				string = os.Getenv("mongoURI")
 	var database_string string = os.Getenv("databases")
 	var github 					string = os.Getenv("github")
