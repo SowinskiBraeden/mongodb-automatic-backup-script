@@ -22,7 +22,8 @@ func Handle(err error) {
 
 // Basic logging
 func LogToFile(message string) {	
-	f, err := os.OpenFile("databaseBackup.log", os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
+	path, _ := os.Getwd()
+	f, err := os.OpenFile(filepath.Join(path, "databaseBackup.log"), os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
 	Handle(err)
 	defer f.Close()
 
@@ -55,9 +56,8 @@ func UploadToGithub(archiveDir string) {
 }
 
 func main() {
-	path, err := os.Getwd()
-	Handle(err)
-	
+	path, _ := os.Getwd()
+
 	// Load environment variables
 	godotenv.Load(fmt.Sprintf("%s/.env", path))
 	var mongoURI 				string = os.Getenv("mongoURI")
@@ -66,13 +66,14 @@ func main() {
 
 	// Ensure required variables
 	if mongoURI == "" || database_string == "" {
+		LogToFile("ERROR - Missing required .env variables: mongoURI, databases")
 		log.Panic("Missing required .env variables: mongoURI, databases")
 	}
 
 	var databases []string = strings.Split(database_string, ", ")
 
 	// Ensure archive directory exists // initialize repository if github provided
-	archiveDir := filepath.Join(".", "archive")
+	archiveDir := filepath.Join(path, "archive")
 	if _, err := os.Stat(archiveDir); os.IsNotExist(err) {
 		err := os.Mkdir(archiveDir, os.ModePerm)
 		Handle(err)
