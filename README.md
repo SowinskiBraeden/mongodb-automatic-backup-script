@@ -28,9 +28,12 @@ A script to automatically handle the backing up of MongoDB databases and optiona
 
     [Service]
     Type=simple
+    User=username
+    Group=admin
     Restart=always
-    RestartSec=5
-    ExecStart=/path/to/binary/file
+    RestartSec=46400
+    WorkingDir=/path/to/project
+    ExecStart=/path/to/project/binary
 
     [Install]
     WantedBy=multi-user.target

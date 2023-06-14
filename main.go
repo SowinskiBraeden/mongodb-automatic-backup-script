@@ -7,6 +7,7 @@ import (
 	"log"
 	"path/filepath"
 	"time"
+	"runtime"
 
 	"github.com/joho/godotenv"
 	"strings"
@@ -16,6 +17,7 @@ const dtFormat string = "2006-01-02 15:04:05 Monday"
 
 func Handle(err error) {
 	if err != nil {
+		LogToFile(err.Error())
 		log.Panic(err.Error())
 	}
 }
