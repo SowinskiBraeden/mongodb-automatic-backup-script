@@ -1,8 +1,6 @@
 # MongoDB Backup Script
 A script to automatically handle the backing up of MongoDB databases and optionally the storage of the archive to a github repository. Designed as a script to be run as a service on a server.
 
-<br>
-
 ### Setup
 
 1. Rename `.env.example` to `.env`
