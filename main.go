@@ -7,7 +7,6 @@ import (
 	"log"
 	"path/filepath"
 	"time"
-	"runtime"
 
 	"github.com/joho/godotenv"
 	"strings"
