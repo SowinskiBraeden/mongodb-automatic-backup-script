@@ -50,7 +50,7 @@ func UploadToGithub(archiveDir string) {
 	}
 
 	// Commit archive files
-	cmd = exec.Command("git", "commit", "-m", fmt.Sprintf("'%s''", now.Format(dtFormat)), fmt.Springf("--author=\"%s <%s>\"", author, email))
+	cmd = exec.Command("git", "commit", "-m", fmt.Sprintf("'%s''", now.Format(dtFormat)), fmt.Sprintf("--author=\"%s <%s>\"", author, email))
 	cmd.Dir = archiveDir
 	_, err = cmd.Output()
 	Handle(err)
