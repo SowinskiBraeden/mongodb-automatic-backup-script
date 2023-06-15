@@ -17,7 +17,6 @@ const dtFormat string = "2006-01-02 15:04:05 Monday"
 
 func Handle(err error) {
 	if err != nil {
-		LogToFile(err.Error())
 		log.Panic(err.Error())
 	}
 }
@@ -42,8 +41,16 @@ func UploadToGithub(archiveDir string) {
 
 	now := time.Now()
 
+	var author string = os.Getenv("github_author")
+	var email  string = os.Getenv("github_email")
+
+	if author == "" || email == "" {
+		LogToFile("ERROR - github link provided but no author or email, add to .env: github_author=<username> and github_email=<email>")
+		log.Panic("Missing required .env: github_author, github_email")
+	}
+
 	// Commit archive files
-	cmd = exec.Command("git", "commit", "-m", fmt.Sprintf("'%s''", now.Format(dtFormat)))
+	cmd = exec.Command("git", "commit", "-m", fmt.Sprintf("'%s''", now.Format(dtFormat)), fmt.Springf("--author=\"%s <%s>\"", author, email))
 	cmd.Dir = archiveDir
 	_, err = cmd.Output()
 	Handle(err)

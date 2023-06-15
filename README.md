@@ -9,6 +9,8 @@ A script to automatically handle the backing up of MongoDB databases and optiona
     mongoURI=mongodb://localhost:27017
     databases=db_name_1, db_name_2, ...
     github=git@github:Username/MongoDB_Backup_Repo.git
+    github_author=Github_Username
+    github_email=john_doe@example.com
     ```
     **Note:** If you wish to backup more than one database at a time, be sure to seperate the database names with a comma and a space as follows "`, `".
 
