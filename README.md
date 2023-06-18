@@ -31,7 +31,7 @@ A script to automatically handle the backing up of MongoDB databases and optiona
     [Service]
     Type=simple
     User=username
-    Group=admin
+    Group=username
     Restart=always
     RestartSec=46400
     WorkingDir=/path/to/project
